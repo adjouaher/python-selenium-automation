@@ -19,10 +19,9 @@ Homework3_2 BDD
 Features
 Test:
 # Created by Thinkpad at 2/4/2021
-Feature: # Amazon helpsearch Cancel order test
-  # Enter feature description here
+Feature: Amazon helpsearch Cancel order test
 
-  Scenario: # User can search for cancel order in Amazon Helpsearch
+  Scenario: User can search for cancel order in Amazon Helpsearch
     Given Open amazon help page
     When Input cancel order into amazon helpsearch field
     And Click on cancel order text
@@ -62,10 +61,9 @@ Homework3_3 BDD
 Features:
 Test
 # Created by Thinkpad at 2/4/2021
-Feature: # Enter feature name here
-  # Enter feature description here
+Feature: Amazon Shopping cart test
 
-  Scenario: # User can search for Amazon Shopping cart
+  Scenario: User can search for Amazon Shopping cart
     Given Open amazon page
     When Click on Amazon shopping cart icon
     Then Product results Shopping Cart is empty are shown
