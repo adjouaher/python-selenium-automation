@@ -3,7 +3,7 @@ Feature: Amazon Add Item Shopping cart test
 
   Scenario: User can add item to Amazon Shopping cart
     Given Open amazon page
-    When Imput Mouse into Amazon search field
+    When Input Key chain into Amazon search field
     And click on Amazon search icon
     And Click on the first product
     And Click on Add to cart button
