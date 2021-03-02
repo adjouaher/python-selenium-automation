@@ -61,61 +61,32 @@ def close_new_switch_to_old_window(context):
 HW6-2
 
 Test:
-Feature: Amazon Links Test
+Feature: Amazon Best Sellers Links Test
 
-  Scenario: User sees Amazon top Menu icon
+  Scenario: User sees Amazon Best Sellers Links icon
     Given Open amazon Best Sellers top icon page
-    Then Verify Best Sellers menu icon is visible
-    And Verify New Releases menu icon is visible
-    And Verify Movers & Shakers menu icon is visible
-    And Verify Most Wished For menu icon is visible
-    Then Verify Gift Ideas menu icon is visible
+    Then Verify Best Sellers 5 links are visible
 
 Steps:
 
-Best_Sellers_Top_Icon = (By.CSS_SELECTOR, "a[href*='zg_bs_tab']")
-Best_Sellers_Icon = (By.CSS_SELECTOR, "a[href*='https://www.amazon.com/Best-Sellers/zgbs/ref=zg_bs_tab']")
-New_Releases_Icon = (By.CSS_SELECTOR, "a[href*='https://www.amazon.com/gp/new-releases/ref=zg_bs_tab']")
-New_MoversandShakers_Icon = (By.CSS_SELECTOR, "a[href*='https://www.amazon.com/gp/movers-and-shakers/ref=zg_bsms_tab']")
-Most_Wished_Icon = (By.CSS_SELECTOR, "a[href*='https://www.amazon.com/gp/most-wished-for/ref=zg_bs_tab']")
-Gift_Ideas_Icon = (By.CSS_SELECTOR, "a[href*='https://www.amazon.com/gp/most-gifted/ref=zg_bs_tab']")
-
+BEST_SELLERS_LINKS = (By.CSS_SELECTOR, 'zg_tabs a')
+HEADER = (By.CSS_SELECTOR, '#zg_banner_text_wrapper')
 
 @given('Open amazon Best Sellers top icon page')
 def open_bestsellers_top_icon(context):
     context.driver.get('https://www.amazon.com/gp/bestsellers/?ref_=nav_cs_bestsellers')
 
 
-@then('Verify Best Sellers menu icon is visible')
-def verify_BestSellers_menu_present(context):
-    e1 = context.driver.find_element(*Best_Sellers_Icon)
-    context.driver.refresh()
-    context.driver.find_element(*Best_Sellers_Icon).click()
+@then('Verify Best Sellers 5 links are visible')
+def verify_BestSellers_links_present(context):
+    best_sellers_links = context.driver.find_elements(*BEST_SELLERS_LINKS)
 
 
-@then('Verify New Releases menu icon is visible')
-def verify_NewRelease_menu_present(context):
-    e2 = context.driver.find_element(*New_Releases_Icon)
-    context.driver.refresh()
-    context.driver.find_element(*New_Releases_Icon).click()
+    for x in range(len(best_sellers_links)):
+        link = context.driver.find_elements(*BEST_SELLERS_LINKS)[x]
 
+        link_text = link.text
+        link.click()
 
-@then('Verify Movers & Shakers menu icon is visible')
-def verify_Movers_and_Shakers_menu_present(context):
-    e3 = context.driver.find_element(*New_MoversandShakers_Icon)
-    context.driver.refresh()
-    context.driver.find_element(*New_MoversandShakers_Icon).click()
-
-
-@then('Verify Most Wished For menu icon is visible')
-def verify_Most_Wished_for_menu_present(context):
-    e4 = context.driver.find_element(*Most_Wished_Icon)
-    context.driver.refresh()
-    context.driver.find_element(*Most_Wished.Icon).click()
-
-
-@then('Verify Gift Ideas menu icon is visible')
-def verify_Gift_Ideas_menu_present(context):
-    e5 = context.driver.find_element(*Gift_Ideas_Icon)
-    context.driver.refresh()
-    context.driver.find_element(*Gift_Ideas_Icon).click()
+        header_text = context.driver.find_element(*HEADER).text
+        assert link_text in header_text, f'Expected {link_text} not in {header_text}'
