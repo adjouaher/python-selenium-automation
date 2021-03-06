@@ -2,9 +2,9 @@ from selenium.webdriver.common.by import By
 from behave import given, when, then
 from selenium.webdriver.common.keys import Keys
 
-@given('Open amazon page')
-def open_amazonhelp(context):
-    context.driver.get('https://www.amazon.com/')
+# @given('Open amazon page')
+# def open_amazonhelp(context):
+#     context.driver.get('https://www.amazon.com/')
 
 
 @when('Click on Amazon shopping cart icon')
