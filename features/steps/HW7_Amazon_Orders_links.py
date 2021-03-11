@@ -35,7 +35,6 @@ def open_amazon(context):
 def click_amazon_orders_link(context):
     context.app.main_page.click_amazon_orders()
 
-
 @then('Verify Sign In page is opened')
-def verify_Sign_in_page(context, SignIn):
+def verify_Sign_in_page(context):
     context.app.Sign_in_page.verify_Sign_in_page(Orders_click_result)

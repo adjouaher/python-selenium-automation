@@ -26,13 +26,13 @@ def click_amazon_orders_link(context):
 
 
 @then('Verify Sign In page is opened')
-def verify_Sign_in_page(context, SignIn):
+def verify_Sign_in_page(context):
     context.app.Sign_in_page.verify_Sign_in_page(Orders_click_result)
 
 
 class MainPage(Page):
     Amazon_Orders = (By.ID, '#nav-orders')
-    # Cart_Icon = (By.ID, '#nav-cart-count')
+    Cart_Icon = (By.ID, '#nav-cart-count')
 
     def open_main_page(self):
         self.open_url('https://www.amazon.com/')
@@ -45,13 +45,14 @@ class Application:
     def __init__(self, driver):
         self.driver = driver
         self.main_page = MainPage(self.driver)
-        self.Sign_in_page = signinpage(self.driver)
+        self.sign_in_page = SigninPage(self.driver)
 
-class Signinpage(Page):
-    Orders_click_result = (By.XPATH, "//div[@class='a-box-inner a-padding-extra-large']/h1")
+class SigninPage(Page):
+    SIGN_IN_HEADER = (By.XPATH, "//div[@class='a-box-inner a-padding-extra-large']/h1")
 
-    def verify_Sign_in_page(self, Signin):
-        self.verify_text(Signin, *self.Orders_click_result)
+    def verify_sign_in_page(self):
+        actual_text = self.find_element(*self.SIGN_IN_HEADER).text
+        assert "Sign In" in actual_text, f'Sign In page did no open'
 
 HW7-1-b
 
@@ -100,7 +101,7 @@ class Application:
         self.main_page = MainPage(self.driver)
         self.cart_empty = cartempty(self.driver)
 
-class cartempty(Page):
+class CartEmptyPage(Page):
     Cart_Empty = (By.XPATH, "//div[@class='a-row sc-your-amazon-cart-is-empty']")
 
     def verify_Sign_in_page(self, youramazoncartisempty):

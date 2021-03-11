@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from Pages.Base_page import Page
 
 
-class cartshowitem(Page):
+class Cartshowitem(Page):
     PRODUCT_RESULT = (By.XPATH, "//div[@data-component-type='s-search-result']//a[.//span[@class='a-price-whole']]")
 
     def verify_show_show_item_page(self, cart):
